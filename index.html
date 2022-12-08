@@ -17,18 +17,25 @@
     <div class="container">
       <div class="Weather-app-wrapper">
         <div class="Weather-app">
-          <h1>Amsterdam</h1>
-          <ul>
-            <li>Wednesday, 18:00</li>
-            <li>Clear</li>
-          </ul>
+          <div class="overview">
+            <h1>Amsterdam</h1>
+            <ul>
+              <li>Wednesday, 18:00</li>
+              <li>Clear</li>
+            </ul>
+          </div>
           <div class="row">
             <div class="col-6">
-              <img
-                src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                alt="Rainy"
-              />
-              12 C F
+              <div class="clearfix weather-temperature">
+                <img
+                  src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                  alt="Rainy"
+                  class="float-left"
+                />
+                <div class="float-left">
+                  <strong>12</strong><span class="units">C F</span>
+                </div>
+              </div>
             </div>
             <div class="col-6">
               <ul>
