@@ -23,8 +23,6 @@ function formatDate(timestamp) {
 
 function displayTemperature(response) {
   console.log(response.data);
-  console.log(response.data.temperature.current);
-  console.log(response.data.wind.speed);
   let temperatuteElement = document.querySelector("#temperature");
   temperatuteElement.innerHTML = Math.round(response.data.temperature.current);
   let cityElement = document.querySelector("#city");
@@ -40,6 +38,13 @@ function displayTemperature(response) {
 
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.time * 1000);
+
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/snow-night.png`
+  );
+  iconElement.setAttribute("alt", response.data.condition.description);
 }
 
 let apiKey = "b3fd63364t03b40b59o6a5657ae079db";
