@@ -28,6 +28,8 @@ li {
   line-height: 19px;
   text-transform: capitalize;
 }
+li:first-letter {
+}
 .Weather-app-wrapper {
   max-width: 600px;
   margin: 35px auto;
