@@ -40,6 +40,9 @@ function displayTemperature(response) {
   dateElement.innerHTML = formatDate(response.data.time * 1000);
 
   let iconElement = document.querySelector("#icon");
+
+  celsiusTemperature = Math.round(response.data.temperature.current);
+
   iconElement.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
@@ -48,9 +51,10 @@ function displayTemperature(response) {
 }
 function search(city) {
   let apiKey = "b3fd63364t03b40b59o6a5657ae079db";
-  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=b3fd63364t03b40b59o6a5657ae079db&units=metric`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
+search("Amsterdam");
 
 function handleSubmit(event) {
   event.preventDefault();
@@ -58,5 +62,26 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusTemperature = null;
+
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celciusLink = document.querySelector("#celcius-link");
+celciusLink.addEventListener("click", displayCelsiusTemperature);
